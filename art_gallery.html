@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-KSK32BCTRW');
+  </script>
+  <meta charset="UTF-8">
+  <title>Art Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <link href="main.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/js/fullPagejs/dist/fullpage.css" />
+  <script type="text/javascript" src="/js/fullPagejs/dist/fullpage.js"></script>
+
+  <style>
+    .section {
+      text-align:center;
+      font-size: 2em;
+
+
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 15ch}
+    }
+    h1 {
+      /** typing effect for non-mobile sized devices with screens*/
+      animation: typing 2.0s steps(20, end),
+      blinking 1s step-end infinite;
+    }
+  </style>
+  <!-- Anime -->
+  <script type="module">
+    import {main} from './myjs.js';
+
+    main();
+  </script>
+
+  <!-- fullPage.js -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      new fullpage('#fullpage', {
+        scrollVertically: false
+      });
+    });
+
+  </script>
+</head>
+<body>
+  <header>
+    <div class="nav-wrapper">
+      <nav class="nav-items">
+        <a href="/"><img src="/multimedia/img/icon.png" alt="icon" width="30vw"></a>
+        <div id="mobile-items">
+          <label><a href="/index.html"><img id="home-logo" src="/multimedia/img/icon.png" alt="icon" width="30vw"></a></label>
+          <input id="check01" type="checkbox" name="menu" />
+          <label for="check01"><div class="line"></div><div class="line"></div><div class="line"></div></label>
+          <ul class="menu-dropdown">
+            <hr>
+            <li><a href="/index.html">Home</a></li>
+            <hr>
+            <li><a href="/professional_experience.html">Work Experience</a></li>
+            <hr>
+            <li><a href="/art_projects.html">Art</a></li>
+            <hr>
+            <li><a href="/contact.html">Contact</a></li>
+            <hr>
+          </ul>
+        </div>
+        <div id="non-icon-items">
+          <a class="non-icon" href="/"><p> Home </p></a>
+          <a class="non-icon" href="/professional_experience.html/"> <p> Work Experience </p></a>
+          <a class="non-icon" href="/art_projects.html/"> <p> Art Endeavors </p></a>
+          <a class="non-icon" href="/contact.html/"> <p> Contact </p> </a>
+        </div>
+      </nav>
+      <div style="display: flex;text-align:center;flex-direction: row;align-items:center; justify-content: center">
+        <h1 style="margin-top: 2rem;">Art Gallery</h1>
+      </div>
+    </div>
+
+  </header>
+
+  <div id="fullpage" >
+
+
+    <div class="section">
+      <div class="slide" data-anchor="slide1">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art1-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art1-medium.webp">
+          <img src="/multimedia/img/art1-large.webp" alt="Geometrical Orca">
+
+        </picture>
+        <h2>Waves and Stripes</h2>
+      </div>
+      <div class="slide" data-anchor="slide2">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art2-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art2-medium.webp">
+          <img src="/multimedia/img/art2-large.webp" alt="Geometrical Orca">
+
+        </picture>
+        <h2>The Isms Collage</h2>
+      </div>
+      <div class="slide" data-anchor="slide3">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art3-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art3-medium.webp">
+          <img src="/multimedia/img/art3-large.webp" alt="Geometrical Orca">
+        </picture>
+        <h2>Blackfish Prism Break</h2>
+      </div>
+      <div class="slide" data-anchor="slide4">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art4-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art4-medium.webp">
+          <img src="/multimedia/img/art4-large.webp" alt="Geometrical Orca">
+        </picture>
+        <h2>Ascended Temptress</h2>
+      </div>
+      <div class="slide" data-anchor="slide5">
+        <picture>
+          <source media="(max-width:480px)" srcset="/multimedia/img/art5-small.webp">
+          <source media="(max-width:760px)" srcset="/multimedia/img/art5-medium.webp">
+          <img src="/multimedia/img/art5-large.webp" alt="Geometrical Orca">
+        </picture>
+        <h2>Surprise!</h2>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>

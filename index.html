@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title> Drake Omar's Portfolio </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Drake Omar, portfolio, art, cs, resume">
+    <!-- could not convert png to webp with transparent background, so using png-->
+    <link rel="icon" href="/multimedia/img/icon.png"/>
+    <link href="main.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KSK32BCTRW');
+    </script>
+    <script type="module">
+        import {main} from './myjs.js';
+
+        main();
+    </script>
+    <style>
+        audio{
+            margin: 2vh;
+        }
+        #work-video{
+            border-color: var(--accent-color);
+            border-radius: .3rem;
+            background-color: var(--accent-color);
+        }
+        #main-experience>h2{
+            padding-top: 1rem;
+            border-top: var(--accent-color) solid;
+        }
+
+        #main-experience h3{
+            padding-top: 1rem;
+            text-align: center;
+        }
+
+        #main-experience{
+            margin-top: 1rem;
+        }
+
+        #main-cs-experience{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        table{
+            margin: 1rem;
+            border: var(--accent-color) solid 2px;
+        }
+
+        tr:nth-child(odd){
+            background-color: #ffdbe3;
+        }
+
+        #main-art+p{
+            text-align:center;
+        }
+        #mobile-aside{
+            display: none;
+        }
+        @media only screen and (min-width: 506px) {
+            #art-1, #art-2{
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+            }
+        }
+        @media only screen and (max-width: 505px){
+            #art-1, #art-2{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            iframe{
+                width: 100%;
+            }
+            #mobile-aside{
+                display: block;
+            }
+            #reg-aside{
+                display: none;
+            }
+        }
+
+        #personal-info{
+            display: flex;
+            flex-direction: column; align-items: center;
+        }
+        #personal-info a{
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        /**hover enlarge effect (transition/transform)*/
+        #main-intro h3{
+            transition: all .2s ease-in;
+        }
+        #main-intro h3:hover, #main-intro a:hover{
+            transform: scale(1.2);
+            color: #e391ab;
+        }
+
+        #main-work-experience{
+            background-color: var(--section-color);
+        }
+
+        #main-cs-experience {
+            background-color: var(--primary-text-color);
+            color: var(--main-background-color);
+        }
+
+        #main-experience {
+            background-color: var(--primary-text-color);
+        }
+
+        #main-experience h2 {
+            color: var(--main-background-color);
+            background-color: var(--primary-text-color);
+        }
+        #personal-info{
+            margin-bottom: 0px;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <nav class="nav-items">
+                <a href="/"><img src="/multimedia/img/icon.png" alt="icon" width="30vw"></a>
+                <div id="mobile-items">
+                    <label><a href="/index.html"><img id="home-logo" src="/multimedia/img/icon.png" alt="icon" width="30vw"></a></label>
+                    <input id="check01" type="checkbox" name="menu" />
+                    <label for="check01"><div class="line"></div><div class="line"></div><div class="line"></div></label>
+                    <ul class="menu-dropdown">
+                        <hr>
+                        <li><a href="/index.html">Home</a></li>
+                        <hr>
+                        <li><a href="/professional_experience.html">Work Experience</a></li>
+                        <hr>
+                        <li><a href="/art_projects.html">Art</a></li>
+                        <hr>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div id="non-icon-items">
+                    <a class="non-icon" href="/"><p> Home </p></a>
+                    <a class="non-icon" href="/professional_experience.html/"> <p> Work Experience </p></a>
+                    <a class="non-icon" href="/art_projects.html/"> <p> Art Endeavors </p></a>
+                    <a class="non-icon" href="/contact.html/"> <p> Contact </p> </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <br>
+    <hr>
+    <main id="main">
+        <section id="main-intro"> <!-- Intro Section -->
+            <h1>Drake Omar's Portfolio </h1>
+            <div id="mobile-titles">
+                <h2 id="title-1" class="mobile-title">Drake</h2>
+                <h2 id="title-2" class="mobile-title">Omar's</h2>
+                <h2 id="title-3" class="mobile-title">Portfolio</h2>
+            </div>
+
+            <p data-aos="fade-down"> Enjoy some music as you peruse... </p>
+            <audio data-aos="fade-right" controls> <!-- background audio -->
+                <source src="/multimedia/audio/audio.mp3" type="audio/mpeg">
+            </audio>
+            <section data-aos="fade-up" id="personal-info">
+                <picture id="profile-picture"> <!-- personal image -->
+                    <source media="(max-width:760px)" srcset="/multimedia/img/profile-image-med.webp">
+                    <source media="(max-width:480px)" srcset="/multimedia/img/profile-image.webp">
+                    <img src="/multimedia/img/profile-image.webp" alt="Profile Picture">
+                </picture>
+                <h3 class="appear"><a href="https://github.com/drakeomar"> Github </a></h3>
+                <h3 class="appear"><a href="https://www.linkedin.com/in/drake-omar-07a921186?original_referer=https%3A%2F%2Fwww.google.com%2F"> LinkedIn </a></h3>
+            </section>
+        </section>
+        <br>
+        <section id="main-experience"> <!-- professional experience section -->
+            <h2>Professional Experience</h2>
+            <section data-aos="fade-right" id="main-work-experience" title="Work Experience">
+                <h3> Work Experience </h3>
+                <div id="home-work">
+                    <iframe title="Wire Cut Company work Youtube video" id="work-video" width="560" height="315"
+                            src="https://www.youtube.com/embed/bdi-VHhVxaI"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                    </iframe>
+                    <p id="mobile-aside">Wire Cut is an advanced manufacturing company specializing in
+                        Electric Discharge Machining servicing the Aerospace and Defense Industries</p>
+                    <p> I worked for several years at Wire Cut Company,
+                        Inc., as the CIO and Systems Administrator. Much of my work
+                        included server management, network security, IT-related tasks,
+                        and software. While there, I coordinated with other management and chief positions
+                        at Wire Cut in order to ensure profitability and quality, devise cost-saving
+                        strategies, and make executive decisions pertaining to procurement, expenses,
+                        guidance, strategy, and efficiency.
+                    </p>
+                    <aside> <p id="reg-aside">Wire Cut is an advanced manufacturing company specializing in
+                            Electric Discharge Machining for Aerospace and Defense </p>
+                    </aside>
+                </div>
+                <hr>
+            </section>
+            <section id="main-cs-experience" title="CS Experience">
+                <h3>CS Experience</h3>
+                <table data-aos="fade-in" border="1" frame="void" rules="rows"> <!-- Projects Table -->
+                    <caption>CS Projects</caption>
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <tr>
+                        <th>Title</th>
+                        <th>Short Description</th>
+                        <th>Link</th>
+                    </tr>
+                    <tr>
+                        <td>DrakeO Analytics</td>
+                        <td>A website data collection and visualization project displaying tracked, analytical information using Node.js</td>
+                        <td> <a href="https://github.com/drakeomar/drakeomar-Web-Analytics-"> Github </a></td>
+                    </tr>
+                    <tr>
+                        <td>E2Gusto</td>
+                        <td>C# and WinForms application to convert the CSV payroll data
+                            in order to be formatted correctly for the payroll service</td>
+                        <td> <a href="https://github.com/drakeomar/Payroll_ACTUAL"> Github </a></td>
+                    </tr>
+                </table>
+                <p data-aos="fade-in"> Click <a href="professional_experience.html"><em><strong>here</strong></em></a> for more projects..</p>
+                <hr>
+            </section>
+        </section>
+        <br>
+        <section data-aos="fade-in" class="reveal"> <!-- Art Section -->
+            <h2>Art Endeavors</h2>
+            <section id="main-art">
+                <section data-aos="fade-left" id="art-1">
+                    <figure>
+                        <figcaption> Waves and Stripes </figcaption>
+                        <picture>
+                            <source media="(max-width:480px)" srcset="/multimedia/img/art1-small.webp">
+                            <source media="(max-width:760px)" srcset="/multimedia/img/art1-medium.webp">
+                            <img src="/multimedia/img/art1-large.webp" alt="Tiger Sketch">
+                        </picture>
+                    </figure>
+                    <details id="art-details-1">
+                        <summary> Waves and Stripes - Description </summary>
+                        <p> Made in 2017, this piece illustrates the fine line between nature and our perspective. </p>
+                    </details>
+                </section>
+                <section data-aos="fade-right" id="art-2">
+                    <details id="art-details-2">
+                        <summary> Blackfish Prism Break- Description </summary>
+                        <p> Made in 2020, this orca presents the duality of prey <i>and</i> predator. This strong yet fragile piece of nature exists in motion.</p>
+                    </details>
+                    <figure>
+                        <figcaption> Blackfish Prism Break </figcaption>
+                        <picture>
+                            <source media="(max-width:480px)" srcset="/multimedia/img/art3-small.webp">
+                            <source media="(max-width:760px)" srcset="/multimedia/img/art3-medium.webp">
+                            <img src="/multimedia/img/art3-large.webp" alt="Blackfish sketch">
+                        </picture>
+                    </figure>
+                    <details id="art-details-2-mobile">
+                        <summary> Blackfish Prism Break- Description </summary>
+                        <p> Made in 2020, this orca presents the duality of prey <i>and</i> predator. This strong yet fragile piece of nature exists in motion.</p>
+                    </details>
+                </section>
+
+            </section>
+            <p> Click <a href="art_projects.html"><em><strong>here</strong></em></a> for more projects..</p>
+        </section>
+    </main>
+    <br><hr>
+    <footer data-aos="fade-in">
+        <h3> Get in Contact with Me! </h3>
+        <p> Access the <b><span class="highlight"> <a href="/contact.html"> Contact Page </a></span> </b></p>
+        <p> <em>OR reach me by...</em></p>
+        <p><b>  Phone Number: </b> <a href="tel:+15015549898">501-554-9898</a> </p>
+        <p><b> Email: </b> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a> </p>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

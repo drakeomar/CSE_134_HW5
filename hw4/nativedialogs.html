@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Native Browser Dialogs Example</title>
+    <script type="text/javascript" src="dist/purify.min.js"></script>
+    <script type="module">
+        //import * as cd from './customdialog.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            cd.customdialogMain();
+            console.log("DOM LOADED");
+        });
+    </script>
+    <script>
+        const outputBox = document.getElementById('output-box');
+        function cleanUp(strings, name) {
+            const str0 = strings[0];
+            const str1 = strings[1];
+            const str2 = strings[2];
+
+            let cleanUserInput = DOMPurify.sanitize(`${str0}${name}${str1}${name}${str2}`, { USE_PROFILES: { html: true } });
+
+            return cleanUserInput;
+        }
+
+        function cleanUpConfirm(strings, result) {
+            const str0 = strings[0];
+            const str1 = strings[1];
+
+            let cleanUserInput = DOMPurify.sanitize(`${str0}${result}${str1}`, { USE_PROFILES: { html: true } });
+
+            return cleanUserInput;
+        }
+
+        function alertFunction() {
+            window.alert("You are being alerted with an URGENT MESSAGE!");
+        }
+
+        function confirmFunction() {
+
+            //outputBox.style.display = "inline-block";
+            const outputBox = document.getElementById('output-box');
+            let confirmBool = window.confirm("Do you Confirm?");
+
+            outputBox.style.display ="inline-block";
+            outputBox.innerHTML = cleanUpConfirm`<div style="border: solid black 4px;
+                                        border-style:double;padding:1rem;"><p>Confirm Result: ${confirmBool} </p></div>`;
+            /**
+            //evaluate response
+            if(confirmBool){
+                outputBox.style.display = "inline-block";
+                outputBox.innerHTML = `<div style="border: black 4px;
+                                        border-style:double;padding:1rem;"><p>User Confirmed YES </p></div>`;
+
+            }else{
+
+                outputBox.getElementById("output-box").innerHTML = `<div style="border: solid black 4px;
+                                        border-style:double;padding:1rem;"><p>User Did Not Confirm, User selected CANCEL </p></div>`;
+                outputBox.style.display = "inline-block";
+            }*/
+        }
+
+        function promptFunction() {
+            const outputBox = document.getElementById('output-box');
+            let personName = window.prompt("What is your name?");
+
+            //evaluate response
+            if(personName){
+                outputBox.style.display = "inline-block";
+                outputBox.innerHTML = `<div style="border:black 4px; border-style:double;
+                                                                    padding:1rem;"><p>Welcome ${personName}!</p>
+                                                                   <p>This website aims to provide cool features for users like you, ${personName}</p></div>`;
+
+            }else{
+                outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User did not enter anything </p></div>`;
+                outputBox.style.display = "inline-block";
+            }
+        }
+
+        /**sanitize user inputs*/
+        function saferPromptFunction() {
+            const outputBox = document.getElementById('output-box');
+            let personName = window.prompt("What is your name?");
+
+            //evaluate response
+            if(personName){
+                outputBox.innerHTML = cleanUp`<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>Welcome ${personName}!</p>
+                                                                   <p>This website aims to provide cool features for users like you, ${personName}</p></div>`;
+                outputBox.style.display = "inline-block";
+            }else{
+                outputBox.innerHTML = `<div style="border: solid black 4px; border-style:double;padding:1rem;"><p>User did not enter anything </p></div>`;
+                outputBox.style.display = "inline-block";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            //the event occurred
+            let alertButton = document.getElementById('alert-button');
+            let confirmButton = document.getElementById('confirm-button');
+            let promptButton = document.getElementById('prompt-button');
+            let saferPromptButton = document.getElementById('safer-prompt-button');
+            const outputBox = document.getElementById('output-box');
+
+            /**button event listeners, bind click events to respective functions*/
+            alertButton.addEventListener('click', () => {
+                outputBox.style.display = "none";
+                setTimeout(function() {
+                    alertFunction();
+                },10)
+            });
+            confirmButton.addEventListener('click', () => {
+                outputBox.style.display = "none";
+                setTimeout(function() {
+                    confirmFunction();
+                },10)
+            });
+            promptButton.addEventListener('click', () => {
+                outputBox.style.display = "none";
+                setTimeout(function() {
+                    promptFunction();
+                },10)
+            });
+            saferPromptButton.addEventListener('click', () => {
+                outputBox.style.display = "none";
+                setTimeout(function() {
+                    saferPromptFunction();
+                },10)
+            });
+        })
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KSK32BCTRW');
+    </script>
+
+</head>
+<body>
+    <main>
+        <h1> Native Dialogs</h1>
+        <section id="button-box">
+            <button id="alert-button">Alert</button>
+            <button id="confirm-button">Confirm</button>
+            <button id="prompt-button">Prompt</button>
+            <button id="safer-prompt-button">Safer Prompt</button>
+        </section>
+        <section id="main-display">
+            <output id="output-box"></output>
+        </section>
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,431 @@
+/** SOURCE: https://fonts.googleapis.com/css?family=Urbanist */
+/* latin-ext */
+@font-face {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/urbanist/v10/L0xjDF02iFML4hGCyOCpRdycFsGxSrqDyx4vH5mqe8Q.woff2)
+          format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Urbanist';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/urbanist/v10/L0xjDF02iFML4hGCyOCpRdycFsGxSrqDyx4vEZmq.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+                    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/** SOURCE: https://fonts.googleapis.com/css2?family=Sanchez&display=swap */
+/* latin-ext */
+@font-face {
+    font-family: 'Sanchez';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sanchez/v13/Ycm2sZJORluHnXbIfmdR_SwE.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Sanchez';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/sanchez/v13/Ycm2sZJORluHnXbIfmlR_Q.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC,
+                    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root{
+    --main-background-color: #1A1A1D;
+    --primary-color: #b42f5d;
+    --secondary-color: #EE4C7C;
+    --primary-text-color: #e8d1d7;
+    --secondary-text-color: white;
+    --line-color: #C3073F;
+    --accent-color: #6F2232;
+    --section-color: rgb(84, 25, 25);
+    --non-main-color: rgb(36, 14, 14);
+    --highlight-color: #dba8a8;
+}
+
+body {
+    margin: 0px;
+}
+/**NON-MOBILE*/
+@media only screen and (min-width: 506px) {
+    h1 {
+        overflow: hidden;
+        border-right: .15em solid var(--primary-color);
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .25em;
+        /** typing effect for non-mobile sized devices with screens*/
+        animation: typing 3.5s steps(30, end),
+        blinking 1s step-end infinite;
+    }
+    nav p:hover{
+        background-color: var(--accent-color);
+    }
+
+    #non-icon-items{
+        display:flex;
+        flex-direction:row;
+        justify-content: space-around;
+        width:100%;
+        padding-left:0px;
+    }
+
+    /**hover enlarge effect (transition/transform)*/
+    #non-icon-items p,nav>a{
+        transition: all .3s ease-in;
+    }
+    #non-icon-items p:hover,nav>a:hover{
+        transform: scale(1.2);
+    }
+
+    nav img{
+        padding-left: 20%;
+    }
+
+    nav p {
+        background-color: var(--primary-color);
+        padding: .65em;
+        border-radius: .25em;
+    }
+
+    .non-icon {
+        text-decoration: none;
+        color: var(--primary-text-color);
+    }
+
+    .mobile-title{
+        display:none;
+    }
+    #mobile-items{
+        display:none;
+    }
+
+    #main-intro {
+        padding-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #home-work{
+        display: flex;
+        flex-direction: row;
+    }
+
+    #work-video{
+        width: 50%;
+        margin: 1rem;
+    }
+
+    #home-work p, #home-work aside{
+        width: 25%;
+    }
+
+    #main-art div{
+        display: flex;
+        flex-direction: row;
+    }
+
+    figure {
+        display: inline-block;
+        border: 2px solid var(--primary-color);
+        border-radius: 1rem;
+        margin: 20px; /* adjust as needed */
+    }
+    figure img {
+        vertical-align: top;
+        border-radius: 1rem;
+    }
+    figure figcaption {
+
+        text-align: center;
+    }
+    aside {
+        width: 40%;
+        padding-left: 0.5rem;
+        margin-left: 0.5rem;
+        float: right;
+        box-shadow: inset 5px 0 5px -5px var(--line-color);
+        font-style: italic;
+    }
+    .appear-1-test{
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 1s linear;
+    }
+    #art-details-2-mobile{
+        display: none;
+    }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 25ch}
+}
+
+
+@keyframes blinking {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color); }
+}
+
+/**MOBILE*/
+@media only screen and (max-width: 505px) {
+    nav>a {
+        display: none;
+    }
+
+    .line {
+        height: .25rem;
+        width: 2.5rem;
+        margin: .5rem auto;
+        background-color: var(--primary-text-color);
+        border-radius: 1rem;
+    }
+
+    #non-icon-items{
+        display: none;
+    }
+
+    .menu-dropdown{
+        display: none;
+    }
+
+    section#main-intro > h1 {
+        display: none;
+    }
+
+    .mobile-title {
+        overflow: hidden;
+        visibility: visible;
+        border-right: .15em solid var(--primary-color);
+        margin: 0 auto;
+        letter-spacing: .25em;
+    }
+
+    #non-icon-items {
+        display:none;
+    }
+
+    nav img{
+        padding:.65em;
+    }
+
+    #home-work{
+        display:flex;
+        flex-direction:column;
+    }
+    #work-video{
+        width: 100%;
+    }
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 8ch}
+    }
+
+    @keyframes typing-2 {
+        from { width: 0 }
+        to { width: 12ch}
+    }
+
+    @keyframes typing-3 {
+        from { width: 0 }
+        to { width: 10ch}
+    }
+
+    @keyframes blinking {
+        from, to { border-color: transparent }
+        50% { border-color: var(--primary-color); }
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0}
+        to {opacity: 1}
+    }
+
+    #title-1 {
+        opacity: 0;
+        /** typing effect for mobile sized devices with screens*/
+        animation: typing 1.5s steps(15,end),
+                blinking 1s step-end,
+                fadeIn .15s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.5s;
+    }
+
+    #title-2 {
+        opacity: 0;
+        /** typing effect for mobile sized devices with screens*/
+        animation: typing-2 1.5s steps(15,end),
+                    blinking 1s step-end,
+                    .15s fadeIn;
+        animation-fill-mode: forwards;
+        animation-delay: 2.1s;
+    }
+
+    #title-3 {
+        opacity: 0;
+        /** typing effect for mobile sized devices with screens*/
+        animation: typing-3 1.5s steps(18,end),
+                blinking 1s step-end infinite,
+                .15s fadeIn;
+        animation-fill-mode: forwards;
+        animation-delay: 3.6s;
+    }
+
+    #main-intro {
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #mobile-items{
+        width:100%;
+        display:flex;
+        flex-direction: row;
+        justify-content: left;
+    }
+
+    #home-logo{
+        position: relative;
+        display: block;
+    }
+    /*hide the inputs/checkmarks and submenu*/
+    nav input, ul.menu-dropdown {
+        display: none;
+    }
+
+    .menu-dropdown{
+        list-style-type:none;
+        transform: skewX(30deg) translateX(5rem);
+        transform-origin: bottom left;
+    }
+
+    .menu-dropdown li{
+        transform: skewX(-30deg);
+    }
+
+    .menu-dropdown hr{
+        border-color: var(--line-color);
+    }
+
+    header a{
+        color: var(--primary-text-color);
+        text-decoration: none;
+    }
+
+    /*position the label*/
+    label {
+        position: relative;
+        display: block;
+        cursor: pointer;
+    }
+
+    /*show the submenu when input is checked*/
+    input:checked~ul {
+        display: block;
+    }
+
+    input:checked img {
+        display: none;
+    }
+
+    #art-details-2{
+        display: none;
+    }
+}
+.nav-items {
+
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    /*margin-left: 10vw;*/
+
+}
+body{
+    font-family: Urbanist;
+    color: var(--primary-text-color);
+    overflow-x:hidden;
+    background-color: var(--main-background-color);
+    border-radius: 1em;
+}
+
+#main{
+    overflow: auto;
+    overflow-x: visible;
+}
+h1{
+    font-size: 2rem;
+}
+
+h1, h2, h3{
+    font-family: Sanchez;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.nav-wrapper {
+    overflow: hidden;
+    margin-bottom: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    background-color: var(--non-main-color);
+}
+
+main a, footer a {
+    color: var(--line-color);
+}
+
+.profile-picture{
+    width: 30vw;
+    height: 40vh;
+}
+
+main{
+    background-color: var(--main-background-color);
+}
+
+hr {
+    border-color: var(--line-color);
+    margin: 0px;
+}
+
+.red-section{
+    background-color: var(--section-color);
+}
+
+#link-section{
+    background-color: var(--section-color);
+    padding: 0.5rem;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0%;
+    background-color: var(--non-main-color);
+    padding-bottom: 1rem;
+}
+
+.highlight{
+    background: var(--highlight-color);
+}

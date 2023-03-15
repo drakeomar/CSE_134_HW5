@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KSK32BCTRW');
+    </script>
+    <meta charset="UTF-8">
+    <title>Custom Dialog Example</title>
+    <script type="text/javascript" src="dist/purify.min.js"></script>
+    <!--Custom Dialog Module -->
+    <script type="module">
+        import * as CustomDialog from './customdialog.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("TESTING");
+            CustomDialog.customdialogMain();
+
+        });
+    </script>
+</head>
+<body>
+    <main>
+        <h1> Custom Dialogs</h1>
+        <section id="button-box" style="padding:1rem;">
+            <button id="custom-alert-button">Alert</button>
+            <button id="custom-confirm-button">Confirm</button>
+            <button id="custom-prompt-button">Prompt</button>
+        </section>
+        <dialog id="custom-alert-dialog">
+
+        </dialog>
+
+        <section id="custom-main-display">
+            <output id="cs-output" style="margin: 1rem; padding:1rem;"></output>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Method Testing Page - Drake Omar Website</title>
+    <link href="main.css" rel="stylesheet">
+    <style>
+        #method-test-form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: #b42f5d solid 2px;
+            border-radius: .5rem;
+            margin: 1rem;
+            padding: 1rem;
+        }
+        p{
+            text-align: center;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .form-element{
+            margin: 1rem;
+        }
+        #response{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #output-response{
+
+        }
+        .first-group{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .response-element-title{
+            text-align: center;
+            background-color: #6F2232;
+            padding: 1rem;
+            margin: 0rem;
+            border-radius: .25rem;
+        }
+        .response-element{
+            /*padding: .5rem;*/
+            margin: .5rem;
+            border: #b42f5d solid 2px;
+            border-radius: .5rem;
+            box-shadow: .25rem .25rem .25rem .25rem #cb2148;
+        }
+        #load-label{
+            display: none;
+            text-align: center;
+        }
+    </style>
+
+    <script>
+
+        //Wait for DOM
+        document.addEventListener('DOMContentLoaded', function(){
+
+            let formData = new FormData();
+            //formData.append();
+
+            /** HTML elements */
+            const id_input = document.getElementById("record-id");
+            const name_input = document.getElementById("article-name");
+            const body_input = document.getElementById("article-body");
+            const date_input = document.getElementById("article-date");
+            const get_button = document.getElementById("get-button");
+            const post_button = document.getElementById("post-button");
+            const put_button = document.getElementById("put-button");
+            const delete_button = document.getElementById("delete-button");
+            const output_response = document.getElementById("response");
+            const load_label = document.getElementById("load-label");
+
+            /** fetch urls */
+            const get_url = "https://httpbin.org/get";
+            const post_url = "https://httpbin.org/post";
+            const put_url = "https://httpbin.org/put";
+            const delete_url = "https://httpbin.org/delete";
+
+            /** method strings */
+            const get_str = "GET";
+            const post_str = "POST";
+            const put_str = "PUT";
+            const delete_str = "DELETE";
+
+            /** fetch async functions */
+                // MDN
+                // SOURCE: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+            let other_method_func = async function(url, data, methodType){
+                    output_response.innerHTML = "";
+                    load_label.style.display = 'block';
+                    const response = await fetch(url, {
+                        method: methodType,
+                        mode: "cors",
+                        cache: "no-cache",
+                        credentials: "same-origin",
+                        headers: {
+                            "Content-Type": "application/json",
+                            //'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        redirect: "follow",
+                        referrerPolicy: "no-referrer",
+                        body: JSON.stringify(data),
+                    });
+                    load_label.style.display = 'none';
+                    return response.json();
+                };
+            async function getData(url, data) {
+                let built_get_url = buildGetStr(url, data);
+                output_response.innerHTML = "";
+                load_label.style.display = 'block';
+                const response = await fetch(built_get_url, {
+                    method: get_str,
+                    mode: "cors",
+                    cache: "no-cache",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json",
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    redirect: "follow",
+                    referrerPolicy: "no-referrer",
+                });
+                load_label.style.display = 'none';
+                return response.json(); // parses JSON response into native JavaScript objects
+            }
+
+            /** event listener functions */
+
+            function get_button_function(){
+                if(validateInputs()){
+                    setDate();
+                    getData(get_url, build_form_data()).then((response) => {
+                        output_response.innerHTML = build_output_str(get_str, response);
+                    });
+                }else{
+                    alert("Please input all fields");
+                }
+            }
+            function post_button_function(){
+                if(validateInputs()){
+                    setDate();
+                    other_method_func(post_url, build_form_data(false), post_str).then((response) => {
+                        output_response.innerHTML = build_output_str(post_str, response);
+                    })
+                }else{
+                    alert("Please input all fields");
+                }
+            };
+
+            let put_button_function = function(){
+                if(validateInputs()){
+                    setDate();
+                    other_method_func(put_url, build_form_data(false), put_str).then((response) => {
+                        output_response.innerHTML = build_output_str(put_str,response);
+                    });
+                }else{
+                    alert("Please input all fields");
+                }
+            };
+            let delete_button_function = function(){
+                /** only need id to delete the record, so no need to validate*/
+                setDate();
+                other_method_func(delete_url, getFormID(build_form_data()), delete_str).then((response) => {
+                    output_response.innerHTML = build_output_str(delete_str,response);
+                });
+            };
+
+
+            /**string/json builder functions*/
+
+            //build string of HTML to be placed within output tag with id #response
+            function build_output_str(method, response){
+                let result = `<h2>${method} Response:</h2>`;
+
+                for(const key in response){ //for each key in response
+                    if(key == 'args'){//assign first group response elements for styling
+                        result += `<div class="first-group"><div class="response-element"><h3 class="response-element-title">${key} : </h3>`
+                    }
+                    else{
+                        result += `<div class="response-element"><h3 class="response-element-title">${key} : </h3>`;
+                    }
+                    //console.log(typeof response[key]);
+
+                    if(response[key] === null){ //if null value in response[key]
+                        result += "<p>null</p>";
+                    }else if(Object.keys(response[key]).length === 0 //if empty object
+                             && Object.getPrototypeOf(response[key]) === Object.prototype){
+                        result += "<p>{}</p>";
+                    }
+
+                    if(typeof response[key] === 'object'){ //if is object, iterate and print out key-value pairs
+                        for(const obj_key in response[key]){
+                            result += `<p>${obj_key}: ${response[key][obj_key]} </p>`;
+                        }
+                    }else{
+                        result += `<p>${response[key]}</p>`;
+                    }
+
+                    if(key == 'form'){ //end of first-group
+                        result += `</div>`; //wrap first group
+                    }
+                    result += `</div>`//wrap whole element
+                }
+
+                return result;
+            }
+
+            //build url string with query parameters for get request
+            function buildGetStr(url, data){
+                return url + "?" + new URLSearchParams({
+                    id: data.id,
+                    name: `${data.name}`,
+                    body: `${data.body}`,
+                    date: `${data.date}`,
+                }).toString();
+            }
+
+            //build json object with form input and date
+            function build_form_data(){
+                let id = id_input.value;
+                let name = name_input.value;
+                let body = body_input.value;
+                let date = date_input.value;
+
+                let result = {};
+
+                result.id = id;
+                result.name = name;
+                result.body = body;
+                result.date = date;
+
+                return result;
+            }
+
+            /** date function */
+            function setDate(){
+                date_input.value = new Date();
+            }
+
+            /** input data helper functions*/
+            function getFormID(data){
+                return {id: data.id}
+            }
+            function validateInputs(){
+                return(name_input.value.trim() && body_input.value.trim())
+            }
+
+            /** Event Bindings */
+            get_button.addEventListener('click', get_button_function);
+            post_button.addEventListener('click', post_button_function);
+            put_button.addEventListener('click', put_button_function);
+            delete_button.addEventListener('click', delete_button_function);
+
+        });
+
+    </script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main>
+        <h1> Method Test </h1>
+        <form id="method-test-form">
+            <label for="record-id"> Record ID:</label>
+            <input class="form-element" type="number" name="record-id" id="record-id" value="0" required>
+            <label for="article-name"> Article Name: </label>
+            <input class="form-element" type="text" name="article-name" id="article-name" required>
+            <label for="article-body"> Article Body: </label>
+            <textarea class="form-element" name="article-body" id="article-body"> </textarea>
+            <input class="form-element" name="article-date" id="article-date"hidden>
+            <!-- submit buttons -->
+            <section class="form-element" id="method-test-buttons">
+                <input type="button" name="get-button" id="get-button" value="Get">
+                <input type="button" name="post-button" id="post-button" value="Post">
+                <input type="button" name="put-button" id="put-button" value="Put">
+                <input type="button" name="delete-button" id="delete-button" value="Delete">
+            </section>
+        </form>
+        <h3 id="load-label">Awaiting Fetch Response...</h3>
+        <section id="output-response">
+            <output id="response">
+
+            </output>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+
+</body>
+</html>

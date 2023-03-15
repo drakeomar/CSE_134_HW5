@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KSK32BCTRW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KSK32BCTRW');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Information</title>
+    <link href="main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+
+        h1{
+            margin-top: 5rem;
+        }
+        button, input[type="submit"]{
+            background-color: #b42f5d;
+            border-radius: 1rem;
+            border: #b42f5d solid;
+        }
+        textarea{
+            width: 70%;
+            height: 5rem;
+            margin: 0.5rem;
+        }
+        form, .button-wrapper, fieldset{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items:center;
+        }
+        #feedback-form{
+            border: #e8d1d7 solid 2px;
+            width: 75%;
+            padding: .5rem;
+            border-radius: .65rem;
+        }
+        #message-form{
+            margin: .5rem;
+            border-radius: .5rem;
+        }
+        #message-form textarea{
+            width: 40vw;
+        }
+        fieldset{
+            border-radius: .5rem;
+            border: #e8d1d7 solid 2px;
+
+        }
+        #feedback-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 1rem;
+        }
+        @media only screen and (min-width: 505px){
+            @keyframes typing {
+                from { width: 0 }
+                to { width: 15ch}
+            }
+            h1 {
+                /** typing effect for non-mobile sized devices with screens*/
+                animation: typing 2.0s steps(15, end),
+                blinking 1s step-end infinite;
+            }
+            #header-type{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            textarea{
+                width: 50%;
+                height: 5rem;
+                margin: 0.5rem;
+
+            }
+            #message-form textarea{
+                width: 50vw;
+            }
+        }
+    </style>
+    <script type="module">
+        import {main} from './myjs.js';
+
+        main();
+    </script>
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <nav class="nav-items">
+                <a href="/"><img src="/multimedia/img/icon.png" alt="icon" width="30vw"></a>
+                <div id="mobile-items">
+                    <label><a href="/index.html"><img id="home-logo" src="/multimedia/img/icon.png" alt="icon" width="30vw"></a></label>
+                    <input id="check01" type="checkbox" name="menu" />
+                    <label for="check01"><div class="line"></div><div class="line"></div><div class="line"></div></label>
+                    <ul class="menu-dropdown">
+                        <hr>
+                        <li><a href="/index.html">Home</a></li>
+                        <hr>
+                        <li><a href="/professional_experience.html">Work Experience</a></li>
+                        <hr>
+                        <li><a href="/art_projects.html">Art</a></li>
+                        <hr>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div id="non-icon-items">
+                    <a class="non-icon" href="/"><p> Home </p></a>
+                    <a class="non-icon" href="/professional_experience.html/"> <p> Work Experience </p></a>
+                    <a class="non-icon" href="/art_projects.html/"> <p> Art Endeavors </p></a>
+                    <a class="non-icon" href="/contact.html/"> <p> Contact </p> </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section id="header-type">
+            <h1> Contact Me! </h1><hr>
+        </section>
+        <section data-aos="fade-right" id="feedback-section" class="red-section">
+            <h2> Submit Anonymous Feedback </h2>
+            <form id="feedback-form" action="/feedback_collector.php" method="post">
+                <label for="feedback"><em>Give Your Honest Feedback: </em></label>
+                <br>
+                <textarea id="feedback"> </textarea>
+                <div class="button-wrapper">
+                    <button class="button">
+                        Submit Feedback
+                    </button>
+                </div>
+            </form>
+        </section><hr>
+        <template>
+            <h3>Feedback Submitted!</h3> <!-- display if basic form filled out and submitted -->
+        </template>
+        <br>
+        <h2> Reach Out! </h2>
+        <form data-aos="fade-left" id="message-form" action="/contact_collector.php" method="post">
+            <legend><code>Send a Message!</code></legend>
+            <fieldset>
+                <label for="roles">What describes you best from the list: </label>
+                <select id="roles">
+                    <optgroup label="Academic">
+                        <option>Professor</option>
+                        <option>T.A./I.A.</option>
+                        <option>Grader</option>
+                        <option>Student</option>
+                    </optgroup>
+                    <optgroup label="Professional">
+                        <option>Recruiter</option>
+                        <option>Software Engineer</option>
+                        <option>Other</option>
+                    </optgroup>
+                    <optgroup label="Enthusiast">
+                        <option>Hobbyist</option>
+                        <option>Other</option>
+                    </optgroup>
+                </select>
+                <br>
+                <label for="finder">How did you find this site? </label>
+                <input list="found" name="finder" id="finder" required="false">
+                <datalist id="found">
+                    <option value="Google">
+                    <option value="LinkedIn">
+                    <option value="UCSD">
+                    <option value="Indeed">
+                    <option value="Other">
+                </datalist>
+                <br>
+                <label for="email">What is a good email?: </label>
+                <input type="text" size="24" id="email" required="true">
+                <br>
+                <label for="optional"> Provide an optional message! </label>
+
+                <textarea id="optional"> </textarea>
+                <br>
+                <div style="margin-left:1rem">
+                    <input type="submit" class="button" value="Submit">
+                    <svg class="svg-icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 0C229.668571 0 0 229.668571 0 512s229.668571 512 512 512 512-229.668571 512-512S794.331429 0 512 0z m307.2 343.771429s-267.702857 295.497143-327.68 365.714285c-59.977143 70.217143-106.788571 0-106.788571 0L210.651429 529.554286s-27.794286-42.422857 21.942857-81.92c46.811429-38.034286 84.845714 0 84.845714 0l122.88 128.731428L746.057143 291.108571s29.257143-20.48 59.977143 5.851429c23.405714 21.942857 13.165714 46.811429 13.165714 46.811429z" fill="#68BF7B" /></svg>
+                </div>
+
+            </fieldset>
+        </form>
+        <template>
+            <h3>Message Sent!</h3> <!-- display if basic form filled out and submitted -->
+        </template>
+    </main>
+    <hr>
+    <footer data-aos="fade-in">
+        <p> Get in Contact with Me! </p>
+        <p> Access the <b><span class="highlight"> <a href="/contact.html"> Contact Page </a></span> </b></p>
+        <p> <em>OR..</em></p>
+        <p><b> Phone Number: </b></p> <a href="tel:+15015549898">501-554-9898</a>
+        <p><b> Email: </b></p> <a href="mailto:drakeomar@icloud.com"> drakeomar@icloud.com </a>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>
