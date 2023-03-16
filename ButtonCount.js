@@ -24,7 +24,7 @@ class ButtonCount extends HTMLElement{
 
         Object.assign(button_el, {
             id: "button-text",
-            innerText: "Times Clicked: "
+            innerText: "Times Clicked : "
         })
 
         Object.assign(count_el, {
@@ -37,6 +37,7 @@ class ButtonCount extends HTMLElement{
         const style = document.createElement("style");
         style.textContent = `
         /* Click effect */
+       
         .click-effect {
           background-position: center;
           transition: background 0.5s;
@@ -55,14 +56,14 @@ class ButtonCount extends HTMLElement{
         #button-wrapper {
           display: flex; 
           flex-direction: row; 
-          justify-content: space-around; 
+          justify-content: space-between; 
           align-items: center; 
           border-radius: .25rem;
-          border: var(--accent-color) solid 2px; 
+          border: var(--accent-color) solid .2rem; 
           padding: 1rem 1.5rem;
           margin: 1rem; 
           cursor: pointer;
-          background-color: var(--primary-text-color); 
+          background-color: #faebed;; 
           box-shadow: 0 0 4px #999;
           outline: none;
           color: var(--main-background-color);

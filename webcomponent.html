@@ -11,8 +11,15 @@
         body{
             background-color: var(--primary-text-color);
         }
-        h1{
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 18ch}
+        }
+        h1 {
             color: var(--non-main-color);
+            /** typing effect for non-mobile sized devices with screens*/
+            animation: typing 2.2s steps(30, end),
+            blinking 1s step-end infinite;
         }
         main{
             margin-top: 7rem;
