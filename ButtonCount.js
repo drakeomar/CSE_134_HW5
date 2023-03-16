@@ -36,8 +36,6 @@ class ButtonCount extends HTMLElement{
         /**style*/
         const style = document.createElement("style");
         style.textContent = `
-        /* Click effect */
-       
         .click-effect {
           background-position: center;
           transition: background 0.5s;
