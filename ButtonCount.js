@@ -1,3 +1,6 @@
+/**Custom Element
+ *
+ */
 class ButtonCount extends HTMLElement{
 
     constructor(){
@@ -16,7 +19,7 @@ class ButtonCount extends HTMLElement{
 
         Object.assign(wrapper_el, {
             id: "button-wrapper",
-            onclick: (event) => this.click_count++,
+            onclick: (event) => this.click_count++, //increase with every click
         })
 
         Object.assign(button_el, {
@@ -26,7 +29,7 @@ class ButtonCount extends HTMLElement{
 
         Object.assign(count_el, {
             id: "button-count",
-            innerText: 0,
+            innerText: 0, //initial count value is 0
         })
 
         /**style*/
@@ -65,6 +68,7 @@ class ButtonCount extends HTMLElement{
         this.shadowRoot.append(style, wrapper_el);
     }
 
+    /** getter for click_count, reads count_el text and returns*/
     get click_count(){
         return Number(this.count_el.innerText);
     }
