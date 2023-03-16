@@ -55,6 +55,23 @@
             display: none;
             text-align: center;
         }
+        main{
+            margin-top: 7rem;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 13ch}
+        }
+        h1 {
+            /** typing effect for non-mobile sized devices with screens*/
+            animation: typing 1.9s steps(20, end),
+            blinking 1s step-end infinite;
+        }
+        section{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 
     <script>
@@ -66,14 +83,17 @@
             //formData.append();
 
             /** HTML elements */
+            /** form input */
             const id_input = document.getElementById("record-id");
             const name_input = document.getElementById("article-name");
             const body_input = document.getElementById("article-body");
             const date_input = document.getElementById("article-date");
+            /** form buttons */
             const get_button = document.getElementById("get-button");
             const post_button = document.getElementById("post-button");
             const put_button = document.getElementById("put-button");
             const delete_button = document.getElementById("delete-button");
+            /** output */
             const output_response = document.getElementById("response");
             const load_label = document.getElementById("load-label");
 
@@ -92,7 +112,7 @@
             /** fetch async functions */
                 // MDN
                 // SOURCE: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-            let other_method_func = async function(url, data, methodType){
+            async function other_method_func(url, data, methodType){
                     output_response.innerHTML = "";
                     load_label.style.display = 'block';
                     const response = await fetch(url, {
@@ -111,6 +131,9 @@
                     load_label.style.display = 'none';
                     return response.json();
                 };
+            //get request builds query parameter string with ALL fields. This could theoretically
+            //  be done with just the id, but I was just including them to prove how it could work with
+            //  multiple parameters in the url request
             async function getData(url, data) {
                 let built_get_url = buildGetStr(url, data);
                 output_response.innerHTML = "";
@@ -137,38 +160,38 @@
                 if(validateInputs()){
                     setDate();
                     getData(get_url, build_form_data()).then((response) => {
-                        output_response.innerHTML = build_output_str(get_str, response);
+                        output_response.innerHTML = build_output_str(get_str, response); //put response in output
                     });
                 }else{
                     alert("Please input all fields");
                 }
             }
             function post_button_function(){
-                if(validateInputs()){
+                if(validateAnyInput()){
                     setDate();
                     other_method_func(post_url, build_form_data(false), post_str).then((response) => {
-                        output_response.innerHTML = build_output_str(post_str, response);
+                        output_response.innerHTML = build_output_str(post_str, response); //put response in output
                     })
                 }else{
-                    alert("Please input all fields");
+                    alert("Please input all fields to create post");
                 }
             };
 
-            let put_button_function = function(){
+            function put_button_function(){
                 if(validateInputs()){
                     setDate();
                     other_method_func(put_url, build_form_data(false), put_str).then((response) => {
-                        output_response.innerHTML = build_output_str(put_str,response);
+                        output_response.innerHTML = build_output_str(put_str,response); //put response in output
                     });
                 }else{
-                    alert("Please input all fields");
+                    alert("Please input at least one field for the record you want to update");
                 }
             };
-            let delete_button_function = function(){
+            function delete_button_function(){
                 /** only need id to delete the record, so no need to validate*/
                 setDate();
                 other_method_func(delete_url, getFormID(build_form_data()), delete_str).then((response) => {
-                    output_response.innerHTML = build_output_str(delete_str,response);
+                    output_response.innerHTML = build_output_str(delete_str,response); //put response in output
                 });
             };
 
@@ -196,9 +219,13 @@
                     }
 
                     if(typeof response[key] === 'object'){ //if is object, iterate and print out key-value pairs
+                        result += `<table border='1'>`;
                         for(const obj_key in response[key]){
-                            result += `<p>${obj_key}: ${response[key][obj_key]} </p>`;
+                            //result += `<p>${obj_key}: ${response[key][obj_key]} </p>`;
+                            result += `<tr><td><span style="font-weight: bolder">${obj_key}: </span>
+                                        ${response[key][obj_key]} </td></tr>`;
                         }
+                        result += `</table>`;
                     }else{
                         result += `<p>${response[key]}</p>`;
                     }
@@ -251,6 +278,9 @@
             function validateInputs(){
                 return(name_input.value.trim() && body_input.value.trim())
             }
+            function validateAnyInput(){
+                return(name_input.value.trim() || body_input.value.trim())
+            }
 
             /** Event Bindings */
             get_button.addEventListener('click', get_button_function);
@@ -264,10 +294,45 @@
 </head>
 <body>
     <header>
-
+        <div class="nav-wrapper">
+            <nav class="nav-items">
+                <a href="/"><img src="/multimedia/img/icon.png" alt="icon" width="30vw"></a>
+                <div id="mobile-items">
+                    <label><a href="/index.html"><img id="home-logo" src="/multimedia/img/icon.png" alt="icon" width="30vw"></a></label>
+                    <input id="check01" type="checkbox" name="menu" />
+                    <label for="check01"><div class="line"></div><div class="line"></div><div class="line"></div></label>
+                    <ul class="menu-dropdown">
+                        <hr>
+                        <li><a href="/index.html">Home</a></li>
+                        <hr>
+                        <li><a href="/professional_experience.html">Work Experience</a></li>
+                        <hr>
+                        <li><a href="/art_projects.html">Art</a></li>
+                        <hr>
+                        <li><a href="/contact.html">Contact</a></li>
+                        <hr>
+                        <li><a href="/methodtest.html">Method Test</a></li>
+                        <hr>
+                        <li><a href="/webcomponent.html">Web Component</a></li>
+                        <hr>
+                    </ul>
+                </div>
+                <div id="non-icon-items">
+                    <a class="non-icon" href="/"><p> Home </p></a>
+                    <a class="non-icon" href="/professional_experience.html/"> <p> Work Experience </p></a>
+                    <a class="non-icon" href="/art_projects.html/"> <p> Art Endeavors </p></a>
+                    <a class="non-icon" href="/contact.html/"> <p> Contact </p> </a>
+                    <a class="non-icon" href="/methodtest.html"> <p> Method Test </p></a>
+                    <a class="non-icon" href="/webcomponent.html"> <p> Web Component </p></a>
+                </div>
+            </nav>
+        </div>
     </header>
     <main>
-        <h1> Method Test </h1>
+        <section>
+            <h1> Method Test </h1>
+        </section>
+
         <form id="method-test-form">
             <label for="record-id"> Record ID:</label>
             <input class="form-element" type="number" name="record-id" id="record-id" value="0" required>
