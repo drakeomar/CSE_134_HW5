@@ -63,7 +63,7 @@ class ButtonCount extends HTMLElement{
           padding: 1rem 1.5rem;
           margin: 1rem; 
           cursor: pointer;
-          background-color: #faebed;; 
+          background-color: #faebed; 
           box-shadow: 0 0 4px #999;
           outline: none;
           color: var(--main-background-color);
