@@ -177,7 +177,18 @@ body {
     from, to { border-color: transparent }
     50% { border-color: var(--primary-color); }
 }
+@media only screen and (max-width: 750px) {
+    .non-icon{
+        font-size: .75em;
+        height: 100%;
+    }
 
+}
+@media only screen and (max-width: 520px) {
+    .non-icon{
+        font-size: .65em;
+    }
+}
 /**MOBILE*/
 @media only screen and (max-width: 505px) {
     nav>a {

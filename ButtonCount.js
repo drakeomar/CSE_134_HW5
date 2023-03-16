@@ -11,7 +11,7 @@ class ButtonCount extends HTMLElement{
 
         this.attachShadow({mode: "open"}); //attach shadow root with open mode
         const wrapper_el = document.createElement("div");
-        wrapper_el.setAttribute("class","ripple"); //css click effect
+        wrapper_el.setAttribute("class","click-effect"); //css click effect
         const button_el = wrapper_el.appendChild(document.createElement("span"));
         const count_el = wrapper_el.appendChild(document.createElement("span"));
 
@@ -30,20 +30,22 @@ class ButtonCount extends HTMLElement{
         Object.assign(count_el, {
             id: "button-count",
             innerText: 0, //initial count value is 0
+
         })
 
         /**style*/
         const style = document.createElement("style");
         style.textContent = `
-        /* Ripple effect */
-        .ripple {
+        /* Click effect */
+        .click-effect {
           background-position: center;
-          transition: background 0.8s;
+          transition: background 0.5s;
+        
         }
-        .ripple:hover {
+        .click-effect:hover {
           background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
         }
-        .ripple:active {
+        .click-effect:active {
           background-color: #6eb9f7;
           background-size: 100%;
           transition: background 0s;
@@ -59,9 +61,10 @@ class ButtonCount extends HTMLElement{
           padding: 1rem 1.5rem;
           margin: 1rem; 
           cursor: pointer;
-          background-color: whitesmoke;
+          background-color: var(--primary-text-color); 
           box-shadow: 0 0 4px #999;
           outline: none;
+          color: var(--main-background-color);
         }
         `
         /** attach nodes to shadowRoot */
