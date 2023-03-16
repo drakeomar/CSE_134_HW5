@@ -3,14 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Web Component Example - Drake Omar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Drake Omar, portfolio, art, cs, resume, web component">
     <script src="ButtonCount.js"></script>
     <link rel="stylesheet" href="/main.css">
     <style>
+        body{
+            background-color: var(--primary-text-color);
+        }
+        h1{
+            color: var(--non-main-color);
+        }
         main{
             margin-top: 7rem;
+            background-color: var(--primary-text-color);
         }
         section{
             display: flex; justify-content: center;
+        }
+        footer{
+            position: absolute;
+            bottom: 0px;
+        }
+        .main-header{
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -51,6 +69,10 @@
         </div>
     </header>
     <main>
+        <div class="main-header">
+            <h1> Web Component </h1>
+        </div>
+
         <section>
             <button-count data-text="Click Me">
 

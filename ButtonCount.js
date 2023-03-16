@@ -43,7 +43,7 @@ class ButtonCount extends HTMLElement{
         
         }
         .click-effect:hover {
-          background: #47a7f5 radial-gradient(circle, transparent 1%, #47a7f5 1%) center/15000%;
+          background: var(--highlight-color) radial-gradient(circle, transparent 1%, var(--highlight-color) 1%) center/20000%;
         }
         .click-effect:active {
           background-color: #6eb9f7;
@@ -58,6 +58,7 @@ class ButtonCount extends HTMLElement{
           justify-content: space-around; 
           align-items: center; 
           border-radius: .25rem;
+          border: var(--accent-color) solid 2px; 
           padding: 1rem 1.5rem;
           margin: 1rem; 
           cursor: pointer;
