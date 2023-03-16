@@ -17,6 +17,7 @@
             margin: 1rem;
             padding: 1rem;
         }
+
         p{
             text-align: center;
             padding-left: 1rem;
@@ -24,6 +25,18 @@
         }
         .form-element{
             margin: 1rem;
+        }
+        .textarea-wrapper{
+            width: 100%;
+            display: flex; justify-content: center;
+        }
+        .name-wrapper{
+            width: 100%;
+            display: flex; justify-content: center;
+        }
+        textarea{
+            width: 75%;
+            height: 10rem;
         }
         #response{
             display: flex;
@@ -169,18 +182,18 @@
                 }
             }
             function post_button_function(){
-                if(validateAnyInput()){
+                if(validateInputs()){
                     setDate();
                     other_method_func(post_url, build_form_data(false), post_str).then((response) => {
                         output_response.innerHTML = build_output_str(post_str, response); //put response in output
                     })
                 }else{
-                    alert("Please input all fields to create post");
+                    alert("Please inpuddt all fields to create post");
                 }
             };
 
             function put_button_function(){
-                if(validateInputs()){
+                if(validateAnyInput()){
                     setDate();
                     other_method_func(put_url, build_form_data(false), put_str).then((response) => {
                         output_response.innerHTML = build_output_str(put_str,response); //put response in output
@@ -338,10 +351,14 @@
         <form id="method-test-form">
             <label for="record-id"> Record ID:</label>
             <input class="form-element" type="number" name="record-id" id="record-id" value="0" required>
-            <label for="article-name"> Article Name: </label>
+            <div class="name-wrapper">
+                <label for="article-name"> Article Name: </label>
+            </div>
             <input class="form-element" type="text" name="article-name" id="article-name" required>
             <label for="article-body"> Article Body: </label>
-            <textarea class="form-element" name="article-body" id="article-body"> </textarea>
+            <div class="textarea-wrapper">
+                <textarea width="100%" class="form-element" name="article-body" id="article-body"> </textarea>
+            </div>
             <input class="form-element" name="article-date" id="article-date"hidden>
             <!-- submit buttons -->
             <section class="form-element" id="method-test-buttons">
