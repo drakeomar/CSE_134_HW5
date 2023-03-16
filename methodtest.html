@@ -203,7 +203,7 @@
                         result += `<p>${response[key]}</p>`;
                     }
 
-                    if(key == 'form'){ //end of first-group
+                    if(key == 'form' || (key == 'args' && method == "GET")){ //end of first-group
                         result += `</div>`; //wrap first group
                     }
                     result += `</div>`//wrap whole element
